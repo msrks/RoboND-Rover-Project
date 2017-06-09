@@ -72,11 +72,24 @@ cv2.addWeighted(data.worldmap, 1, data.ground_truth, 0.1, 0)
 
 ### Autonomous Navigation and Mapping
 
-#### 1. Fill in the `perception_step()` (at the bottom of the `perception.py` script) and `decision_step()` (in `decision.py`) functions in the autonomous mapping scripts and an explanation is provided in the writeup of how and why these functions were modified as they were.
+#### 1. I filled in `perception_step()` and `decision_step()` functions
 
+* `perception_step()` is mostly equal to `process_image()`. In addition to `process_image()`, `perception_step()` has function to update rover state and to draw map in simulator.
+
+* I added some lines in `decision_step()` to pick up gold rocks more effectivelly.
 
 #### 2. Launching in autonomous mode your rover can navigate and map autonomously.  Explain your results and how you might improve them in your writeup.  
 
-**Note: running the simulator with different choices of resolution and graphics quality may produce different results, particularly on different machines!  Make a note of your simulator settings (resolution and graphics quality set on launch) and frames per second (FPS output to terminal by `drive_rover.py`) in your writeup when you submit the project so your reviewer can reproduce your results.**
+my simulator setting is the following..
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+* PC: macbook pro 2016 late
+* resolution: 800x600
+* graphics quality: Simple
+* fps: 29-34
+
+I tried driving in autonomous mode a few times, and I found that my script could achive mapping > 40% of the environment with fidelity > 60%!
+And, by improving decision strategy, I can effectively pick up gold rock :)
+
+I created [video]('./video.mp4') using moviepy
+
+I think Reinforcement Learning is helpful to create decision strategy. Reinforcement Learning makes it possible for agent to learn effective strategy by itself. (In that case, the design of the reward seems to become important.)
