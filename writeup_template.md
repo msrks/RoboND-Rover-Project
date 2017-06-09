@@ -77,6 +77,7 @@ cv2.addWeighted(data.worldmap, 1, data.ground_truth, 0.1, 0)
 * `perception_step()` is mostly equal to `process_image()`. In addition to `process_image()`, `perception_step()` has function to update rover state and to draw map in simulator.
 
 * I added some lines in `decision_step()` to pick up gold rocks more effectivelly.
+  - if detect-gold-rock => go toward it.
 
 #### 2. Launching in autonomous mode your rover can navigate and map autonomously.  Explain your results and how you might improve them in your writeup.  
 
