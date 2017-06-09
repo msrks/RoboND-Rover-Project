@@ -1,6 +1,6 @@
 # Rover Project
 
-<img src="./misc/rover_image.jpg" width="400">
+<img src="./misc/rover_image.jpg" width="250">
 
 **The goals / steps of this project are the following:**  
 
@@ -33,7 +33,7 @@ rock:
  - thresh = (R_channel > 100) & (G_channel > 100) & (B_channel < 60)
 ```
 
-<img src="./output/warped_threshed.jpg" width="400">
+<img src="./output/warped_threshed.jpg" width="250">
 
 #### 2. how I modified `process_image()`
 
@@ -41,7 +41,7 @@ pipeline is the following ..
 
 1. define `src` and `dst` coordinates using a calibration image
 
-<img src="./calibration_images/example_grid1.jpg" width="400">
+<img src="./calibration_images/example_grid1.jpg" width="1000">
 
 2. apply perspective transform
 
