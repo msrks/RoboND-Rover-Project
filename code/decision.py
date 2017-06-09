@@ -34,6 +34,13 @@ def decision_step(Rover):
                     Rover.brake = Rover.brake_set
                     Rover.steer = 0
                     Rover.mode = 'stop'
+            # go toward gold rock
+            if len(Rover.rock_dists) >= 5:
+                Rover.steer = np.clip(np.mean(Rover.rock_angles * 180/np.pi), -15, 15)
+                print (np.mean(Rover.rock_dists))
+                if np.mean(Rover.rock_dists) < 20:
+                    Rover.mode = 'stop'
+
 
         # If we're already in "stop" mode then make different decisions
         elif Rover.mode == 'stop':
@@ -60,6 +67,14 @@ def decision_step(Rover):
                     # Set steer to mean angle
                     Rover.steer = np.clip(np.mean(Rover.nav_angles * 180/np.pi), -15, 15)
                     Rover.mode = 'forward'
+            # go toward gold rock
+            if len(Rover.rock_dists) >= 5:
+                print (np.mean(Rover.rock_dists))
+                if np.mean(Rover.rock_dists) < 5:
+                    Rover.steer = 0
+                else:
+                    Rover.steer = np.clip(np.mean(Rover.rock_angles * 180/np.pi), -15, 15)
+
     # Just to make the rover do something
     # even if no modifications have been made to the code
     else:
