@@ -20,22 +20,9 @@
 
 ### Notebook Analysis
 
-#### 1. overview of pipeline in Notebook
+#### 1. how I identified ground, obstacles and rocks
 
-1. read the calibration image and get cordinate of `src` and `dst`
-
-<img src="./calibration_images/example_grid1.jpg" width="400">
-
-2. perspective transform
-
-```
-M = cv2.getPerspectiveTransform(src, dst)
-warped = cv2.warpPerspective(img, M, (img.shape[1], img.shape[0]))
-```
-
-3. color thresolding
-
-**thresholds to select ground, obstacles and rocks:**
+I used color thresholding with the following threshold..
 
 ```
 ground:
@@ -48,17 +35,38 @@ rock:
 
 <img src="./output/warped_threshed.jpg" width="400">
 
-4. convert rover-centric pixel values to world coords
+#### 2. how I modified `process_image()`
+
+pipeline is the following ..
+
+1. define `src` and `dst` coordinates using a calibration image
+
+<img src="./calibration_images/example_grid1.jpg" width="400">
+
+2. apply perspective transform
+
+```
+M = cv2.getPerspectiveTransform(src, dst)
+warped = cv2.warpPerspective(img, M, (img.shape[1], img.shape[0]))
+```
+
+3. apply color thresolding
+
+4. convert thresholded image pixel values to rover-centric coords
+
+5. convert rover-centric pixel values to world coords
 
 (rotation + translation) to worldmap
 
-5. make a combined image w/ ground_truth map
+6. update worldmap
+
+7. make a combined image w/ ground_truth map
 
 ```
 cv2.addWeighted(data.worldmap, 1, data.ground_truth, 0.1, 0)
 ```
 
-6. make [video]('./output/test_mapping.mp4') using moviepy
+#### 3. I created [video]('./output/test_mapping.mp4') using moviepy
 
 ---
 
