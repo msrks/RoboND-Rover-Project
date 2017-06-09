@@ -1,2 +1,3 @@
 .python-version
 code/.ipynb_checkpoints/
+code/__pycache__/*
