@@ -129,9 +129,9 @@ def perception_step(Rover):
     im_obst = get_obstacles(warped)
 
     # 4) Update Rover.vision_image (this will be displayed on left side of screen)
-    Rover.vision_image[:,:,0] = im_obst
-    Rover.vision_image[:,:,1] = im_rock
-    Rover.vision_image[:,:,2] = im_terr
+    Rover.vision_image[:,:,0] = im_obst * 255
+    Rover.vision_image[:,:,1] = im_rock * 255
+    Rover.vision_image[:,:,2] = im_terr * 255
 
     # 5) Convert map image pixel values to rover-centric coords
     xpix_terr, ypix_terr = rover_coords(im_terr)
